@@ -1,0 +1,84 @@
+/** Boutons */
+.nav-bar button[name = "nav-home-button"]{
+    position: absolute;
+    left: 46%;
+    top: 1.5%;
+    width: 120px;
+    height: 42px;
+    color: white;
+    background-color: #232323;
+    border: none;
+    border-radius: 24px;
+    transition: 0.40s;
+}
+
+.nav-bar button[name = "nav-home-button"]:hover{
+    left: 44.7%;
+    text-align: center;
+    border: 1px solid black;
+    width: 150px;
+    color: black;
+    background-color: white;
+    transition: 0.40s;
+}
+
+
+.nav-bar button[name = "nav-login-button"]{
+    position: absolute;
+    left: 38%;
+    top: 2%;
+    border: none;
+    background: none;
+    transition: 0.30s;
+}
+
+.nav-bar button[name = "nav-login-button"]:hover{
+    left: 37.7%;
+    font-size: 19px;
+    transition: 0.30s;
+}
+
+.nav-bar button[name = "nav-register-button"]{
+    position: absolute;
+    left: 58%;
+    top: 2%;
+    border: none;
+    background: none;
+    transition: 0.30s;
+}
+
+.nav-bar button[name = "nav-register-button"]:hover{
+    left: 57.7%;
+    font-size: 19px;
+    transition: 0.30s;
+}
+
+.nav-bar input[name = "nav-logout-button"]{
+    position: absolute;
+    left: 58%;
+    top: 2%;
+    border: none;
+    background: none;
+    transition: 0.30s;
+}
+
+.nav-bar input[name = "nav-logout-button"]:hover{
+    left: 57.7%;
+    font-size: 19px;
+    transition: 0.30s;
+}
+
+/** Autres */
+.nav-bar img {
+    position: absolute;
+    left: 39%;
+    top: 10%;
+}
+
+.nav-bar div {
+    background-image: radial-gradient(yellow, #cdc237);
+}
+
+.nav-bar hr {
+    background-color: #4b484e;
+}
