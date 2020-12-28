@@ -1,8 +1,7 @@
 <?php
 
-require_once "App/Manager/SqlManager.php";
-require_once "App/Manager/SessionManager.php";
-require_once "App/Utils/TempUser.php";
+require_once "App/Autoloader.php";
+__load_all_classes();
 session_start();
 $message = "";
 $post = $_POST;
