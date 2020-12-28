@@ -13,7 +13,7 @@
 }
 
 .nav-bar button[name = "nav-home-button"]:hover{
-    left: 44.7%;
+    left: 45.2%;
     text-align: center;
     border: 1px solid black;
     width: 150px;
@@ -71,7 +71,7 @@
 /** Autres */
 .nav-bar img {
     position: absolute;
-    left: 39%;
+    left: 41.5%;
     top: 10%;
 }
 

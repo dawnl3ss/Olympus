@@ -8,6 +8,9 @@ class WebSocket {
     /** @var int $port */
     private $port;
 
+    /** @var $socket */
+    public $socket;
+
     public function __construct(string $adress, int $port){
         $this->adress = $adress;
         $this->port = $port;

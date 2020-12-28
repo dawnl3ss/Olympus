@@ -11,21 +11,20 @@ body {
     text-align: center;
     border-radius: 15px;
     color: white;
-    width: 250px;
+    width: 300px;
     border: 1px solid blanchedalmond;
     height: 35px;
 }
 
 .chat-form input:focus {
     background: none;
-    margin: -3px auto;
     text-align: center;
     border: 1px solid white;
-    width: 275px;
+    width: 325px;
     color: white;
     position: absolute;
     left: 44%;
-    transition: 0.6s;
+    transition: 0.5s;
     border: 1px solid #faffc4;
 }
 
@@ -34,7 +33,7 @@ body {
     border-radius: 40px;
     border: 1px solid #afafaf;
     position: absolute;
-    left: 66%;
+    left: 62%;
     top: 87%;
     background: #afafaf;
     transition: 0.25s;
@@ -45,7 +44,7 @@ body {
     border-radius: 40px;
     border: 1px solid white;
     position: absolute;
-    left: 66%;
+    left: 62%;
     top: 87%;
     background-color: white;
     transition: 0.25s;
@@ -60,6 +59,6 @@ body {
     height: 670px;
     display: inline-block;
     position: absolute;
-    left: 85%;
+    left: 90%;
     top: 25%;
 }

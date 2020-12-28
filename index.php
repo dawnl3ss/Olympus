@@ -95,7 +95,7 @@
                 $t_pos = 25;
 
                 foreach (SqlManager::getData("SELECT * FROM connected", SqlManager::DATABASE_OLYMPUS) as $key => $value){
-                    echo "<p style='color: white; white-space: pre; position: absolute; left: 89%; top: $t_pos%;'> {$value['name']} </p>";
+                    echo "<p style='color: white; white-space: pre; position: absolute; left: 93%; top: $t_pos%;'> {$value['name']} </p>";
                     $t_pos += 4;
                 }
             ?>
