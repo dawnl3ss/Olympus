@@ -1,8 +1,9 @@
 <?php
     require_once "App/Manager/SessionManager.php";
     require_once "App/Manager/SqlManager.php";
-    require_once "App/Manager/TempUser.php";
-    require_once "App/Message.php";
+    require_once "App/Utils/TempUser.php";
+    require_once "App/Utils/Message.php";
+    require_once "App/Utils/ForbiddenMessage.php";
     session_start();
     Message::__init_messages();
 
@@ -19,7 +20,7 @@
 
     foreach (Message::$messages as $message){
         if ($message instanceof Message){
-            if ($message->getMessage() == "suce"){
+            if (ForbiddenMessage::contain_forbidden_word($message->getMessage())){
                 $message->delete_message();
             }
         }

@@ -2,7 +2,7 @@
 
 require_once "App/Manager/SqlManager.php";
 require_once "App/Manager/SessionManager.php";
-require_once "App/Manager/TempUser.php";
+require_once "App/Utils/TempUser.php";
 session_start();
 $message = "";
 $post = $_POST;
