@@ -68,6 +68,21 @@
     transition: 0.30s;
 }
 
+.nav-bar button[name = "nav-profile-button"]{
+    position: absolute;
+    left: 38%;
+    top: 2%;
+    border: none;
+    background: none;
+    transition: 0.30s;
+}
+
+.nav-bar button[name = "nav-profile-button"]:hover{
+    left: 37.7%;
+    font-size: 19px;
+    transition: 0.30s;
+}
+
 /** Autres */
 .nav-bar img {
     position: absolute;

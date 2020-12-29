@@ -16,7 +16,7 @@ if (isset($post["register-sub"])){
             SqlManager::writeData("INSERT INTO users(
                 pseudo, password, email
             ) VALUES (
-                '" . $post["pseudo"] . "', '" . md5($post["password"]) . "', '" . $post["email"] . "'
+                '" . $post["pseudo"] . "', '" . $post["password"] . "', '" . $post["email"] . "'
             )", SqlManager::DATABASE_OLYMPUS);
             header("Location: login.php");
         } else {

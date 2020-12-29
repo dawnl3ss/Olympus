@@ -12,8 +12,8 @@ if (SessionManager::is_registered($_SESSION)){
 
 if (isset($post["login-sub"])){
     if (!empty($post["email"]) and !empty($post["password"])){
-        if (SqlManager::dataExist("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . md5($post["password"]) . "'", SqlManager::DATABASE_OLYMPUS)){
-            $data = SqlManager::getData("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . md5($post["password"]) . "'", SqlManager::DATABASE_OLYMPUS);
+        if (SqlManager::dataExist("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . $post["password"] . "'", SqlManager::DATABASE_OLYMPUS)){
+            $data = SqlManager::getData("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . $post["password"] . "'", SqlManager::DATABASE_OLYMPUS);
             $session = new SessionManager([
                 "id" => $data[0]["id"],
                 "pseudo" => $data[0]["pseudo"],

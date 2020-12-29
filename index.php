@@ -82,6 +82,11 @@
                         <input type="submit" name="nav-logout-button" value="Logout">
                     </form>
                 <?php endif; ?>
+                <?php if (SessionManager::is_registered($_SESSION)) : ?>
+                    <label>
+                        <a href="profile.php"><button name="nav-profile-button"> Profile </button></a>
+                    </label>
+                <?php endif; ?>
                 <span>
                     <img src="images/olympus-logo.png">
                 </span>
