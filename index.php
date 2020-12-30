@@ -101,6 +101,7 @@
         </div>
 
         <div class="chat-box">
+            <br>
             <?php
                 foreach (MessageHandler::$messages as $message){
                     if ($message instanceof Message){
@@ -112,8 +113,10 @@
                     }
                 }
             ?>
+            <br>
         </div>
 
+        <div class="chat-back"></div>
         <form class="chat-form" action="index.php" method="post" name="chat-form">
             <input type="text" name="chat-input" placeholder="Ecrivez ici..." autocomplete="off">
             <button type="submit"><img src="images/send-message.png" name="paper-plane"></button>

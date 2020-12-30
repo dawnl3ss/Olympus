@@ -34,7 +34,7 @@ class MessageHandler {
      * @return string
      */
     public function format_string() : string {
-        return "<p style='color: white; white-space: pre; border-left: 4px solid white'>    {$this->author}  |  {$this->message} </p>";
+        return "<p class='chat-message'>    {$this->author}  |  {$this->message} </p>";
     }
 
     /**
