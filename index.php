@@ -15,14 +15,6 @@
         header("Location: login.php");
     }
 
-    foreach (Message::$messages as $message){
-        if ($message instanceof Message){
-            if (ForbiddenMessage::contain_forbidden_word($message->getMessage())){
-                $message->delete_message();
-            }
-        }
-    }
-
     if (!SessionManager::is_registered($_SESSION)){
         header("Location: login.php");
     }
@@ -95,7 +87,9 @@
         </nav>
 
         <div class="connected">
-            <div class="border-left"></div>
+            <div class="border-left">
+                <h5 class="border-left-title"> Connected </h5>
+            </div>
             <?php
                 $t_pos = 25;
 
@@ -108,9 +102,14 @@
 
         <div class="chat-box">
             <?php
-                foreach (SqlManager::getData("SELECT * FROM messages ORDER BY `id`", SqlManager::DATABASE_OLYMPUS) as $key => $data){
-                    $m = new Message($data["content"], $data["author"], $data["id"]);
-                    echo $m->format_string();
+                foreach (MessageHandler::$messages as $message){
+                    if ($message instanceof Message){
+                        if (ForbiddenMessage::contain_forbidden_word($message->getMessage())){
+                            $message->delete_message();
+                            continue;
+                        }
+                        echo $message->format_string();
+                    }
                 }
             ?>
         </div>

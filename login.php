@@ -23,7 +23,8 @@ if (isset($post["login-sub"])){
             $u = new TempUser([
                 "username" => $data[0]["pseudo"],
                 "password" => $data[0]["password"],
-                "id" => $data[0]["id"]
+                "id" => $data[0]["id"],
+                "email" => $data[0]["email"],
             ]);
             $u->connect();
             $_SESSION["data"] = $session;

@@ -55,17 +55,28 @@
         </nav>
 
         <div class="div-profile-details">
+            <?php
+                $u = null;
+
+                if ($_SESSION["temp_user"] instanceof TempUser){
+                    $u = $_SESSION["temp_user"];
+                }
+            ?>
             <div class="div-profile-username">
                 <h3> Username : </h3>
-                <h5> <?php if ($_SESSION["temp_user"] instanceof TempUser) echo $_SESSION["temp_user"]->getUsername() ?> </h5>
+                <h5> <?php echo $u->getUsername() ?> </h5>
             </div>
             <div class="div-profile-password">
                 <h3> Password : </h3>
-                <h5> <?php if ($_SESSION["temp_user"] instanceof TempUser) echo $_SESSION["temp_user"]->getPassword() ?> </h5>
+                <h5> <?php echo $u->getPassword() ?> </h5>
             </div>
             <div class="div-profile-id">
                 <h3> User ID : </h3>
-                <h5> <?php if ($_SESSION["temp_user"] instanceof TempUser) echo $_SESSION["temp_user"]->getId() ?> </h5>
+                <h5> <?php echo $u->getId() ?> </h5>
+            </div>
+            <div class="div-profile-email">
+                <h3> Email : </h3>
+                <h5> <?php echo $u->getMail() ?> </h5>
             </div>
         </div>
     </body>

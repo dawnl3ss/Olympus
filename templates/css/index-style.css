@@ -62,3 +62,11 @@ body {
     left: 90%;
     top: 25%;
 }
+
+.border-left-title {
+    border-bottom: 1px solid blanchedalmond;
+    position: relative;
+    left: 40%;
+    top: -7%;
+    color: white;
+}

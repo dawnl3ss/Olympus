@@ -25,7 +25,7 @@ class MessageHandler {
     public static function __init_messages(){
         self::$messages = [];
 
-        foreach (SqlManager::getData("SELECT * FROM `messages`", SqlManager::DATABASE_OLYMPUS) as $key => $data){
+        foreach (SqlManager::getData("SELECT * FROM `messages` ORDER BY `id`", SqlManager::DATABASE_OLYMPUS) as $key => $data){
             array_push(self::$messages, new Message($data["content"], $data["author"], $data["id"]));
         }
     }
@@ -41,7 +41,7 @@ class MessageHandler {
      * @return $this
      */
     public function delete_message() : self {
-        if (in_array($this, self::$messages)){
+        if (in_array($this, self::$messages, true)){
             SqlManager::writeData("DELETE FROM `messages` WHERE id = '{$this->id}'", SqlManager::DATABASE_OLYMPUS);
         }
         return $this;

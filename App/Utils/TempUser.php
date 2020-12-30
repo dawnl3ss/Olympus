@@ -33,6 +33,13 @@ class TempUser {
         return $this->data["id"];
     }
 
+    /**
+     * @return string
+     */
+    public function getMail() : string {
+        return $this->data["email"];
+    }
+
     public function connect(){
         $this->connected_state = true;
         SqlManager::writeData("INSERT INTO connected(

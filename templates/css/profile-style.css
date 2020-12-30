@@ -45,18 +45,35 @@ body {
 }
 
 .div-profile-id {
+     text-align: center;
+     background: rgba(17, 17, 17, 0.71);
+     width: 250px;
+     height: 75px;
+     border-radius: 24px;
+     color: white;
+     position: relative;
+     left: 70%;
+     top: -31%;
+ }
+
+.div-profile-id h5 {
+    text-align: center;
+    color: blanchedalmond;
+}
+
+.div-profile-email {
     text-align: center;
     background: rgba(17, 17, 17, 0.71);
-    width: 250px;
-    height: 75px;
+    width: 350px;
+    height: 80px;
     border-radius: 24px;
     color: white;
     position: relative;
-    left: 70%;
-    top: -31%;
+    top: -15%;
+    left: 30.6%;
 }
 
-.div-profile-id h5 {
+.div-profile-email h5 {
     text-align: center;
     color: blanchedalmond;
 }
