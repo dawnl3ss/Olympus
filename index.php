@@ -125,23 +125,21 @@
 </html>
 
 <?php
+    if ($_SESSION["data"] instanceof SessionManager){
+        $session_manager = $_SESSION["data"];
 
-if ($_SESSION["data"] instanceof SessionManager){
-    $session_manager = $_SESSION["data"];
-
-    if (!empty($_POST["chat-input"])){
-        try {
-            SqlManager::writeData("INSERT INTO messages(
-                    author, content
-                ) VALUES (
-                    '" . $session_manager->get_data("pseudo") . "', '" . $_POST["chat-input"] . "'
-                )
-            ", SqlManager::DATABASE_OLYMPUS);
-            header("refresh: 0");
-        } catch (PDOException $e){
-            echo $e->getMessage();
+        if (!empty($_POST["chat-input"])){
+            try {
+                SqlManager::writeData("INSERT INTO messages(
+                        author, content
+                    ) VALUES (
+                        '" . $session_manager->get_data("pseudo") . "', '" . $_POST["chat-input"] . "'
+                    )
+                ", SqlManager::DATABASE_OLYMPUS);
+                header("refresh: 0");
+            } catch (PDOException $e){
+                echo $e->getMessage();
+            }
         }
     }
-}
-
 ?>
