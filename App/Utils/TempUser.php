@@ -40,6 +40,37 @@ class TempUser {
         return $this->data["email"];
     }
 
+    /**
+     * @param string $index
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function update(string $index, $value) : self {
+        SqlManager::writeData("UPDATE `users`
+            SET $index = '$value'
+            WHERE id = '{$this->getId()}'
+        ", SqlManager::DATABASE_OLYMPUS);
+
+        if ($index === "pseudo"){
+            SqlManager::writeData("UPDATE `connected`
+                SET name = '$value'
+                WHERE name = '{$this->getUsername()}'
+            ", SqlManager::DATABASE_OLYMPUS);
+        }
+        return $this;
+    }
+
+    /**
+     * @param string $index
+     *
+     * @param $value
+     */
+    public function send_instance_content(string $index, $value){
+        $this->data[$index] = $value;
+    }
+
     public function connect(){
         $this->connected_state = true;
         SqlManager::writeData("INSERT INTO connected(

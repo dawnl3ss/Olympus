@@ -2,9 +2,34 @@
     require_once "App/Autoloader.php";
     __load_all_classes();
     session_start();
+    $u = null;
+    $post = $_POST;
 
     if (!SessionManager::is_registered($_SESSION)){
         header("Location: login.php");
+    }
+
+    if ($_SESSION["temp_user"] instanceof TempUser) {
+        $u = $_SESSION["temp_user"];
+    }
+
+    if (isset($post["edit-sub"])){
+        if (!empty($post["username"]) and !empty($post["password"]) and !empty($post["email"]) and !empty($post["id"])){
+            if (($post["username"] === $u->getUsername()) and ($post["password"] === $u->getPassword()) and ($post["email"] === $u->getMail()) and ((int)$post["id"] === $u->getId())){} else {
+                if ($post["username"] !== $u->getUsername()){
+                    $u->update("pseudo", $post["username"])->send_instance_content("username", $post["username"]);
+                }
+
+                if ($post["password"] !== $u->getPassword()){
+                    $u->update("password", $post["password"])->send_instance_content("password", $post["password"]);
+                }
+
+                if ($post["email"] !== $u->getMail()){
+                    $u->update("email", $post["email"])->send_instance_content("email", $post["email"]);
+                }
+                header("Location: profile.php");
+            }
+        }
     }
 ?>
 
@@ -54,10 +79,32 @@
         </nav>
 
         <div class="div-profile-edit">
-            <form class="edit-form" action="#" method="post">
-                <label>
-                    <input type="">
-                </label>
+            <form class="edit-form" action="" method="post">
+                <div class="div-profile-username">
+                    <label>
+                        <h3> Username : </h3>
+                        <input type="text" value="<?php echo $u->getUsername(); ?>" name="username" autocomplete="off">
+                    </label>
+                </div>
+                <div class="div-profile-password">
+                    <label>
+                        <h3> Password : </h3>
+                        <input type="text" value="<?php echo $u->getPassword(); ?>" name="password" autocomplete="off">
+                    </label>
+                </div>
+                <div class="div-profile-id">
+                    <label>
+                        <h3> User ID : </h3>
+                        <input type="text" value="<?php echo $u->getId(); ?>" name="id" autocomplete="off">
+                    </label>
+                </div>
+                <div class="div-profile-email">
+                    <label>
+                        <h3> Email : </h3>
+                        <input type="text" value="<?php echo $u->getMail(); ?>" name="email" autocomplete="off">
+                    </label>
+                </div>
+                <input type="submit" class="edit-submit" name="edit-sub">
             </form>
         </div>
     </body>

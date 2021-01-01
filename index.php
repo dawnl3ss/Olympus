@@ -125,15 +125,15 @@
 </html>
 
 <?php
-    if ($_SESSION["data"] instanceof SessionManager){
-        $session_manager = $_SESSION["data"];
+    if ($_SESSION["temp_user"] instanceof TempUser){
+        $u = $_SESSION["temp_user"];
 
         if (!empty($_POST["chat-input"])){
             try {
                 SqlManager::writeData("INSERT INTO messages(
                         author, content
                     ) VALUES (
-                        '" . $session_manager->get_data("pseudo") . "', '" . $_POST["chat-input"] . "'
+                        '" . $u->getUsername() . "', '" . $_POST["chat-input"] . "'
                     )
                 ", SqlManager::DATABASE_OLYMPUS);
                 header("refresh: 0");
