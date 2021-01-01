@@ -8,17 +8,16 @@
     }
 ?>
 
-
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title> Olympus - Profile </title>
+        <title> Olympus - Edit Profile </title>
         <link rel="icon" href="images/fav-icon.png">
 
         <!-- CSS Style -->
         <link href="templates/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="templates/css/nav-bar.css">
-        <link rel="stylesheet" href="templates/css/profile-style.css">
+        <link rel="stylesheet" href="templates/css/edit.css">
     </head>
 
     <body>
@@ -54,36 +53,12 @@
             </div>
         </nav>
 
-        <div class="div-profile-details">
-            <?php
-                $u = null;
-
-                if ($_SESSION["temp_user"] instanceof TempUser){
-                    $u = $_SESSION["temp_user"];
-                }
-            ?>
-            <div class="div-profile-username">
-                <h3> Username : </h3>
-                <h5> <?php echo $u->getUsername() ?> </h5>
-            </div>
-            <div class="div-profile-password">
-                <h3> Password : </h3>
-                <h5> <?php echo $u->getPassword() ?> </h5>
-            </div>
-            <div class="div-profile-id">
-                <h3> User ID : </h3>
-                <h5> <?php echo $u->getId() ?> </h5>
-            </div>
-            <div class="div-profile-email">
-                <h3> Email : </h3>
-                <h5> <?php echo $u->getMail() ?> </h5>
-            </div>
-            <div class="edit-profile">
-                <br><br><br>
-                <a href="edit.php">
-                    <button class="edit-button" type="submit" name="edit-button">    Editer <img class="edit-img" src="images/edit.png"></button>
-                </a>
-            </div>
+        <div class="div-profile-edit">
+            <form class="edit-form" action="#" method="post">
+                <label>
+                    <input type="">
+                </label>
+            </form>
         </div>
     </body>
 </html>

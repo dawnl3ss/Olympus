@@ -23,8 +23,8 @@ body {
 }
 
 .div-profile-username h5 {
-    text-align: center;
-    color: blanchedalmond;
+     text-align: center;
+     color: blanchedalmond;
 }
 
 .div-profile-password {
@@ -76,4 +76,34 @@ body {
 .div-profile-email h5 {
     text-align: center;
     color: blanchedalmond;
+}
+
+.edit-button {
+    white-space: pre;
+    background: none;
+    border: 1px solid white;
+    border-radius: 24px;
+    width: 150px;
+    height: 40px;
+    position: relative;
+    left: 40%;
+    transition: 0.25s;
+}
+
+.edit-button:hover {
+    background: white;
+    width: 250px;
+    height: 40px;
+    transition: 0.25s;
+    position: relative;
+    position: relative;
+    left: 35.48%;
+}
+
+.edit-img {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 1%;
+    left: 10%;
 }

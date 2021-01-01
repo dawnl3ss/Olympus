@@ -41,11 +41,9 @@ body {
 .chat-form img[name = "paper-plane"]{
     width: 35px;
     border-radius: 40px;
-    border: 1px solid #afafaf;
     position: absolute;
     left: 62%;
     top: 87%;
-    background: #afafaf;
     transition: 0.25s;
 }
 
