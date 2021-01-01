@@ -11,7 +11,6 @@ class PassEncryption {
      */
     public static function encrypt_pass($plaintext, $password) {
         $method = "AES-256-CBC";
-        $hack = "SxLow";
         $key = hash('sha256', $password, true);
         $iv = openssl_random_pseudo_bytes(16);
         $ciphertext = openssl_encrypt($plaintext, $method, $key, OPENSSL_RAW_DATA, $iv);
