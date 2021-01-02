@@ -8,8 +8,7 @@
         unset($_SESSION["data"]);
 
         if ($_SESSION["temp_user"] instanceof TempUser){
-            $u = $_SESSION["temp_user"];
-            $u->disconnect();
+            $_SESSION["temp_user"]->disconnect();
             unset($_SESSION["temp_user"]);
         }
         header("Location: login.php");
