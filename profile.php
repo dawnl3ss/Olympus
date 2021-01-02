@@ -84,6 +84,9 @@
                     <button class="edit-button" type="submit" name="edit-button">    Editer <img class="edit-img" src="images/edit.png"></button>
                 </a>
             </div>
+            <a href="../Olympus">
+                <img class="back-arrow-image" src="images/back-arrow.png">
+            </a>
         </div>
     </body>
 </html>

@@ -42,7 +42,7 @@
         <!-- CSS Style -->
         <link href="templates/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="templates/css/nav-bar.css">
-        <link rel="stylesheet" href="templates/css/edit.css">
+        <link rel="stylesheet" href="templates/css/edit-style.css">
     </head>
 
     <body>
@@ -106,6 +106,9 @@
                 </div>
                 <input type="submit" class="edit-submit" name="edit-sub">
             </form>
+            <a href="profile.php">
+                <img class="back-arrow-image" src="images/back-arrow.png">
+            </a>
         </div>
     </body>
 </html>

@@ -117,7 +117,7 @@
         </div>
 
         <div class="chat-back"></div>
-        <form class="chat-form" action="index.php" method="post" name="chat-form">
+        <form class="chat-form" action="" method="post" name="chat-form">
             <input type="text" name="chat-input" placeholder="Ecrivez ici..." autocomplete="off">
             <button type="submit"><img src="images/send-message.png" name="paper-plane"></button>
         </form>

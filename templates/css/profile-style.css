@@ -107,3 +107,18 @@ body {
     top: 1%;
     left: 10%;
 }
+
+.back-arrow-image {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: -10%;
+    top: -1%;
+    transition: 0.25s;
+}
+
+.back-arrow-image:hover {
+    width: 60px;
+    height: 60px;
+    transition: 0.25s;
+}
