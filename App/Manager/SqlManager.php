@@ -5,6 +5,10 @@ class SqlManager {
     public const STATEMENT_DATA_NOT_FIND = 0;
     public const STATEMENT_DATA_FIND = 1;
 
+    public const REQUEST_WRITE = 0;
+    public const REQUEST_GET = 1;
+    public const REQUEST_DATA_EXIST = 2;
+
     public const DATABASE_OLYMPUS = "olympus_db";
 
     /** @var string $username */

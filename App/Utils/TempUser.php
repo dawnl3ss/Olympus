@@ -41,6 +41,13 @@ class TempUser {
     }
 
     /**
+     * @return bool
+     */
+    public function isAdmin() : bool {
+        return $this->data["admin"];
+    }
+
+    /**
      * @param string $index
      *
      * @param $value
