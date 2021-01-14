@@ -1,38 +1,37 @@
 <?php
+    require_once "App/Autoloader.php";
+    __load_all_classes();
+    session_start();
+    $message = "";
+    $post = $_POST;
 
-require_once "App/Autoloader.php";
-__load_all_classes();
-session_start();
-$message = "";
-$post = $_POST;
-
-if (SessionManager::is_registered($_SESSION)){
-    header("Location: ../Olympus");
-}
-
-if (isset($post["login-sub"])){
-    if (!empty($post["email"]) and !empty($post["password"])){
-        if (SqlManager::dataExist("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . $post["password"] . "'", SqlManager::DATABASE_OLYMPUS)){
-            $data = SqlManager::getData("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . $post["password"] . "'", SqlManager::DATABASE_OLYMPUS);
-            $session = new SessionManager([], (bool)((int)$data[0]["id"] === AdminTools::ADMIN_ACCOUNT_ID));
-            $u = new TempUser([
-                "username" => $data[0]["pseudo"],
-                "password" => $data[0]["password"],
-                "id" => $data[0]["id"],
-                "email" => $data[0]["email"],
-                "admin" => (bool)((int)$data[0]["id"] === AdminTools::ADMIN_ACCOUNT_ID)
-            ]);
-            $u->connect();
-            $_SESSION["data"] = $session;
-            $_SESSION["temp_user"] = $u;
-            header("Location: index.php");
-        } else {
-            $message = "Mauvais identifiant(s)";
-        }
-    } else {
-        $message = "Veuillez remplir tout les champs.";
+    if (SessionManager::is_registered($_SESSION)){
+        header("Location: ../Olympus");
     }
-}
+
+    if (isset($post["login-sub"])){
+        if (!empty($post["email"]) and !empty($post["password"])){
+            if (SqlManager::dataExist("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . $post["password"] . "'", SqlManager::DATABASE_OLYMPUS)){
+                $data = SqlManager::getData("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . $post["password"] . "'", SqlManager::DATABASE_OLYMPUS);
+                $session = new SessionManager([], (bool)((int)$data[0]["id"] === AdminTools::ADMIN_ACCOUNT_ID));
+                $u = new TempUser([
+                    "username" => $data[0]["pseudo"],
+                    "password" => $data[0]["password"],
+                    "id" => $data[0]["id"],
+                    "email" => $data[0]["email"],
+                    "admin" => (bool)((int)$data[0]["id"] === AdminTools::ADMIN_ACCOUNT_ID)
+                ]);
+                $u->connect();
+                $_SESSION["data"] = $session;
+                $_SESSION["temp_user"] = $u;
+                header("Location: index.php");
+            } else {
+                $message = "Mauvais identifiant(s)";
+            }
+        } else {
+            $message = "Veuillez remplir tout les champs.";
+        }
+    }
 ?>
 
 <html lang="FRA">

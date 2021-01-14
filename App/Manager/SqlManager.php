@@ -7,7 +7,6 @@ class SqlManager {
 
     public const REQUEST_WRITE = 0;
     public const REQUEST_GET = 1;
-    public const REQUEST_DATA_EXIST = 2;
 
     public const DATABASE_OLYMPUS = "olympus_db";
 
@@ -89,6 +88,20 @@ class SqlManager {
         $pdo = self::connectPDO($db);
         $sql = $pdo->prepare($statement);
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * @param string $statement
+     *
+     * @return bool|int
+     */
+    public static function determinate_sql_request_type(string $statement){
+        if (strpos($statement, "SELECT") === false) {} else {
+            return self::REQUEST_GET;
+        } if ((strpos($statement, "INSERT INTO") === false) and (strpos($statement, "DROP") === false) and (strpos($statement, "UPDATE") === false)) {} else {
+            return self::REQUEST_WRITE;
+        }
+        return false;
     }
 }

@@ -1,0 +1,114 @@
+body {
+    background-image: linear-gradient(#414141, rgba(0, 0, 0, 0.85));
+}
+
+.admin-form {
+    width: 850px;
+    height: 500px;
+    background: rgba(25, 25, 25, 0.71);
+    border-radius: 30px;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+}
+
+.admin-form button[name = "submit-button"] {
+    border: 1px solid white;
+    border-radius: 25px;
+    width: 200px;
+    height: 40px;
+    background: none;
+    color: white;
+    position: absolute;
+    left: 35%;
+    top: 80%;
+    transition: 0.25s;
+}
+
+.admin-form button[name = "submit-button"]:hover {
+    background-color: white;
+    color: black;
+    transition: 0.25s;
+}
+
+.div-sql {
+     position: absolute;
+     left: 27%;
+     top: 5%;
+ }
+
+.div-sql input[name = "sql-input"] {
+    width: 350px;
+    height: 50px;
+    border-radius: 24px;
+    border: 1px solid white;
+    background: none;
+    text-align: center;
+    color: white;
+    transition: 0.25s;
+}
+
+.div-sql input[name = "sql-input"]:focus {
+    transition: 0.25s;
+    width: 400px;
+}
+
+.sql-title {
+    position: relative;
+    left: 32.5%;
+    color: white;
+}
+
+.shell-div {
+    position: absolute;
+    left: 27%;
+    top: 40%;
+}
+
+.shell-div input[name = "shell-input"] {
+    width: 350px;
+    height: 50px;
+    border-radius: 24px;
+    border: 1px solid white;
+    background: none;
+    text-align: center;
+    color: white;
+    transition: 0.25s;
+}
+
+.shell-div input[name = "shell-input"]:focus {
+    transition: 0.25s;
+    width: 400px;
+}
+
+.shell-title {
+    position: relative;
+    left: 31.5%;
+    color: white;
+}
+
+.response-space {
+    background: rgba(25, 25, 25, 0.95);
+    width: 850px;
+    height: 700px;
+    border-radius: 30px;
+    position: absolute;
+    left: 52.5%;
+    top: 22%;
+}
+
+.response-header h3 {
+    color: white;
+    text-align: center;
+    margin: 20px;
+}
+
+.response-header hr {
+    background-color: white;
+    width: 700px;
+}
+
+.response-text p {
+    color: white;
+    margin: 30px;
+}

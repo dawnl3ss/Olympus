@@ -23,14 +23,39 @@ class AdminTools {
      * @return bool|mixed|void
      */
     public static function apply_sql_command(string $statement, int $request_type){
-        switch ($request_type){
+        switch ($request_type) {
             case SqlManager::REQUEST_WRITE:
-                return SqlManager::writeData($statement, SqlManager::DATABASE_OLYMPUS);
+                SqlManager::writeData($statement, SqlManager::DATABASE_OLYMPUS);
+                return "Data has been writed in the database";
                 break;
             case SqlManager::REQUEST_GET:
-                return SqlManager::getData($statement, SqlManager::DATABASE_OLYMPUS);
+                return self::array_to_string(SqlManager::getData($statement, SqlManager::DATABASE_OLYMPUS));
                 break;
         }
         return false;
+    }
+
+    /**
+     * @param array $arr
+     */
+    public static function array_to_string(array $arr){
+        $string_array = "";
+        $assoc_index = 0;
+
+        foreach ($arr as $key => $value) {
+            if (is_array($value)) {
+                $string_array .= "{$assoc_index} => {" . "<br>";
+                $assoc_index++;
+
+                foreach ($value as $key1 => $value1) {
+                    if (is_array($value1)) {} else {
+                        $string_array .= "    {$key1} => {$value1}," . "<br>";
+                    }
+                }
+            } else {
+                $string_array .= "{$key} => {$value}," . "<br>";
+            }
+        }
+        return $string_array;
     }
 }
