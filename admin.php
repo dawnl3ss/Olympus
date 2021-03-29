@@ -66,7 +66,7 @@
                     </label>
                 <?php endif; ?>
                 <span>
-                    <img src="images/olympus-logo.png">
+                    <img src="images/olympus-logo.png" name="logo">
                 </span>
                 <br><br><br><br><br><br><hr>
             </div>

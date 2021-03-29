@@ -54,7 +54,7 @@ if (isset($post["register-sub"])){
                     <a href="register.php"><button name="nav-register-button"> Register </button></a>
                 </label>
                 <span>
-                    <img src="images/olympus-logo.png">
+                    <img src="images/olympus-logo.png" name="logo">
                  </span>
                 <br><br><br><br><br><br><hr>
             </div>

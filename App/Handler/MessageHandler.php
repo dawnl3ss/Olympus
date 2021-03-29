@@ -1,6 +1,7 @@
 <?php
 
-require_once "App\Manager\SqlManager.php";
+require_once "App\Autoloader.php";
+__load_all_classes();
 
 class MessageHandler {
 
@@ -27,6 +28,17 @@ class MessageHandler {
 
         foreach (SqlManager::getData("SELECT * FROM `messages` ORDER BY `id`", SqlManager::DATABASE_OLYMPUS) as $key => $data){
             array_push(self::$messages, new Message($data["content"], $data["author"], $data["id"]));
+        }
+    }
+
+    /**
+     * @param TempUser $asker
+     */
+    public static function __init_private_messages(TempUser $asker){
+        $asker->conversations = [];
+
+        foreach (SqlManager::getData("SELECT * FROM `private_messages` WHERE author = '{$asker->getUsername()}' OR recipient = '{$asker->getUsername()}' ORDER BY `id`", SqlManager::DATABASE_OLYMPUS) as $key => $data){
+            array_push($asker->conversations, new PrivateMessage($data["content"], $data["author"], $data["id"], $data["recipient"]));
         }
     }
 

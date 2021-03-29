@@ -1,5 +1,8 @@
 <?php
 
+require_once "App/Autoloader.php";
+__load_all_classes();
+
 class TempUser {
 
     /** @var array $data **/
@@ -7,6 +10,9 @@ class TempUser {
 
     /** @var bool $connected_state */
     public $connected_state = false;
+
+    /** @var PrivateMessage[] $conversations */
+    public $conversations = [];
     
     public function __construct(array $data){
         $this->data = $data;
@@ -48,6 +54,13 @@ class TempUser {
     }
 
     /**
+     * @return PrivateMessage[]
+     */
+    public function getConversations() : array {
+        return $this->conversations;
+    }
+
+    /**
      * @param string $index
      *
      * @param $value
@@ -80,11 +93,15 @@ class TempUser {
 
     public function connect(){
         $this->connected_state = true;
-        SqlManager::writeData("INSERT INTO connected(
-            name
-        ) VALUES (
-            '" . $this->getUsername() . "'
-        )", SqlManager::DATABASE_OLYMPUS);
+        if (!SqlManager::dataExist("SELECT * FROM `connected` WHERE name = '{$this->getUsername()}'", SqlManager::DATABASE_OLYMPUS)){
+            if (!$this->isAdmin()){
+                SqlManager::writeData("INSERT INTO connected(
+                    name
+                ) VALUES (
+                    '" . $this->getUsername() . "'
+                )", SqlManager::DATABASE_OLYMPUS);
+            }
+        }
     }
 
     public function disconnect(){

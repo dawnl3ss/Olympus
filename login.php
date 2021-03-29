@@ -24,7 +24,7 @@
                 $u->connect();
                 $_SESSION["data"] = $session;
                 $_SESSION["temp_user"] = $u;
-                header("Location: index.php");
+                header("Location: ../Olympus");
             } else {
                 $message = "Mauvais identifiant(s)";
             }
@@ -59,7 +59,7 @@
                     <a href="register.php"><button name="nav-register-button"> Register </button></a>
                 </label>
                 <span>
-                    <img src="images/olympus-logo.png">
+                    <img src="images/olympus-logo.png" name="logo">
                 </span>
                 <br><br><br><br><br><br><hr>
             </div>

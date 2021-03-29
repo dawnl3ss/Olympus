@@ -1,24 +1,23 @@
 <?php
+
     require_once "App/Autoloader.php";
     __load_all_classes();
     session_start();
 
-    if (!SessionManager::is_registered($_SESSION)){
-        header("Location: login.php");
-    }
+    if ($_SESSION["temp_user"] instanceof TempUser) MessageHandler::__init_private_messages($user = $_SESSION["temp_user"]);
+
 ?>
 
-
-<html lang="fr">
+<html>
     <head>
+        <title> Olympus - Private Messages </title>
         <meta charset="utf-8">
-        <title> Olympus - Profile </title>
         <link rel="icon" href="images/fav-icon.png">
 
         <!-- CSS Style -->
         <link href="templates/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="templates/css/nav-bar.css">
-        <link rel="stylesheet" href="templates/css/profile-style.css">
+        <link rel="stylesheet" href="templates/css/dm-style.css">
     </head>
 
     <body>
@@ -52,41 +51,24 @@
                 </span>
                 <br><br><br><br><br><br><hr>
             </div>
-        </nav>
-
-        <div class="div-profile-details">
             <?php
-                $u = null;
+                $current_recipient = null;
 
-                if ($_SESSION["temp_user"] instanceof TempUser){
-                    $u = $_SESSION["temp_user"];
+                foreach ($user->getConversations() as $message){
+                    if ($message->getAuthor() === $user->getUsername()){
+                        echo $message->getRecipient() . "<br>";
+                    } else echo $message->getAuthor() . "<br>";
+                    /*if (is_null($current_recipient)) $current_recipient = $message->getRecipient();
+
+                    if ($current_recipient === $message->getRecipient()){
+                        echo $message->format_string();
+                    } else {
+                        echo "<hr>";
+                        echo $message->format_string();
+                        $current_recipient = $message->getRecipient();
+                    }*/
                 }
             ?>
-            <div class="div-profile-username">
-                <h3> Username : </h3>
-                <h5> <?php echo $u->getUsername() ?> </h5>
-            </div>
-            <div class="div-profile-password">
-                <h3> Password : </h3>
-                <h5> <?php echo $u->getPassword() ?> </h5>
-            </div>
-            <div class="div-profile-id">
-                <h3> User ID : </h3>
-                <h5> <?php echo $u->getId() ?> </h5>
-            </div>
-            <div class="div-profile-email">
-                <h3> Email : </h3>
-                <h5> <?php echo $u->getMail() ?> </h5>
-            </div>
-            <div class="edit-profile">
-                <br><br><br>
-                <a href="edit.php">
-                    <button class="edit-button" type="submit" name="edit-button">    Editer <img class="edit-img" src="images/edit.png"></button>
-                </a>
-            </div>
-            <a href="../Olympus">
-                <img class="back-arrow-image" src="images/back-arrow.png">
-            </a>
-        </div>
+        </nav>
     </body>
 </html>

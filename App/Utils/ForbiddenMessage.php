@@ -3,9 +3,7 @@
 class ForbiddenMessage {
 
     /** @var array $words_list */
-    private static $words_list = [
-        "bitch"
-    ];
+    private static $words_list = [];
 
     /**
      * @param string $text

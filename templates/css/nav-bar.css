@@ -84,10 +84,16 @@
 }
 
 /** Autres */
-.nav-bar img {
+.nav-bar img[name = "logo"]{
     position: absolute;
     left: 41.5%;
     top: 10%;
+}
+
+.nav-bar img[name = "dm"]{
+    position: absolute;
+    left: 92%;
+    top: 3%;
 }
 
 .nav-bar div {

@@ -1,11 +1,13 @@
 <?php
 
 class Utils {
-    
+
     /**
      * @param array $arr
+     *
+     * @return string
      */
-    public static function array_to_string(array $arr){
+    public static function array_to_string(array $arr) : string {
         $string_array = "";
         $assoc_index = 0;
 

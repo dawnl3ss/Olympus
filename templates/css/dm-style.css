@@ -1,0 +1,11 @@
+body {
+    background-image: linear-gradient(#414141, rgba(0, 0, 0, 0.85));
+}
+
+.private-message {
+    color: white;
+    white-space: pre;
+    border-left: 4px solid white;
+    position: relative;
+    left: 2%;
+}
