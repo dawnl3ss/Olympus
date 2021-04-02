@@ -37,7 +37,7 @@ class MessageHandler {
     public static function __init_private_messages(TempUser $asker){
         $asker->conversations = [];
 
-        foreach (SqlManager::getData("SELECT * FROM `private_messages` WHERE author = '{$asker->getUsername()}' OR recipient = '{$asker->getUsername()}' ORDER BY `id`", SqlManager::DATABASE_OLYMPUS) as $key => $data){
+        foreach (SqlManager::getData("SELECT * FROM `private_messages` WHERE author = '{$asker->getUsername()}' OR recipient = '{$asker->getUsername()}' ORDER BY `id` DESC", SqlManager::DATABASE_OLYMPUS) as $key => $data){
             array_push($asker->conversations, new PrivateMessage($data["content"], $data["author"], $data["id"], $data["recipient"]));
         }
     }

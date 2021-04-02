@@ -51,24 +51,42 @@
                 </span>
                 <br><br><br><br><br><br><hr>
             </div>
-            <?php
-                $current_recipient = null;
-
-                foreach ($user->getConversations() as $message){
-                    if ($message->getAuthor() === $user->getUsername()){
-                        echo $message->getRecipient() . "<br>";
-                    } else echo $message->getAuthor() . "<br>";
-                    /*if (is_null($current_recipient)) $current_recipient = $message->getRecipient();
-
-                    if ($current_recipient === $message->getRecipient()){
-                        echo $message->format_string();
-                    } else {
-                        echo "<hr>";
-                        echo $message->format_string();
-                        $current_recipient = $message->getRecipient();
-                    }*/
-                }
-            ?>
         </nav>
+
+        <div class="main-menu">
+            <form action="dm.php" method="post">
+                <div class="selection-box">
+                    <?php
+                        $current_recipients = [];
+
+                        foreach ($user->getConversations() as $message){
+                            if (!in_array($message->getRecipient(), $current_recipients) and !in_array($message->getAuthor(), $current_recipients)){
+                                if ($message->getAuthor() === $user->getUsername()){
+                                    echo "<button type='submit' name='{$message->getRecipient()}'> {$message->getRecipient()} </button>";
+                                    array_push($current_recipients, $message->getRecipient());
+                                } else {
+                                    echo "<button type='submit' name='{$message->getAuthor()}> {$message->getAuthor()} </button>";
+                                    array_push($current_recipients, $message->getAuthor());
+                                }
+                            } else continue;
+                        }
+                    ?>
+                </div>
+            </form>
+
+            <div class="message-menu">
+                <p>
+                    <?php
+                        foreach ($_POST as $key => $value){
+                            foreach ($user->getConversations() as $message){
+                                if ($message->getAuthor() === $key or $message->getRecipient() === $key){
+                                    echo $message->format_string();
+                                }
+                            }
+                        }
+                    ?>
+                </p>
+            </div>
+        </div>
     </body>
 </html>

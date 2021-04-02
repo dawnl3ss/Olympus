@@ -24,7 +24,7 @@ class PrivateMessage extends Message {
      * @return string
      */
     public function format_string() : string {
-        return "<p class='private-message'>    {$this->author}  |  {$this->message} -> {$this->recipient}</p>";
+        return "<p class='private-message'>    <bold>{$this->author}</bold>  ->  {$this->message} </p>";
     }
 
     /**
@@ -42,7 +42,7 @@ class PrivateMessage extends Message {
      */
     public function edit_message(string $new) : MessageHandler {
         SqlManager::writeData("UPDATE `private_messages`
-            SET content = '{$new}' 
+            SET content = '{$new}'
             WHERE id = '{$this->id}'
         ", SqlManager::DATABASE_OLYMPUS);
         return $this;
