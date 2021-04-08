@@ -24,7 +24,7 @@
         <nav class="nav-bar">
             <div>
                 <label>
-                    <a href="/Olympus"><button name="nav-home-button"> Acceuil </button></a>
+                    <a href="/Olympus"><button name="nav-home-button"> Accueil </button></a>
                 </label>
                 <?php if (!SessionManager::is_registered($_SESSION)) : ?>
                     <label>
@@ -54,7 +54,7 @@
         </nav>
 
         <div class="main-menu">
-            <form action="dm.php" method="post">
+            <form action="dm.php" method="get">
                 <div class="selection-box">
                     <?php
                         $current_recipients = [];
@@ -77,7 +77,7 @@
             <div class="message-menu">
                 <p>
                     <?php
-                        foreach ($_POST as $key => $value){
+                        foreach ($_GET as $key => $value){
                             foreach ($user->getConversations() as $message){
                                 if ($message->getAuthor() === $key or $message->getRecipient() === $key){
                                     echo $message->format_string();

@@ -37,6 +37,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\Olympus\settings" />
+      <recent name="C:\wamp64\www\Olympus\App\Manager" />
       <recent name="C:\wamp64\www\Olympus" />
       <recent name="C:\wamp64\www\Olympus\App\Utils" />
     </key>
@@ -81,6 +83,10 @@
       <workItem from="1610633910374" duration="6316000" />
       <workItem from="1617190911162" duration="3566000" />
       <workItem from="1617396519889" duration="3542000" />
+      <workItem from="1617462954265" duration="4282000" />
+      <workItem from="1617473351528" duration="5407000" />
+      <workItem from="1617632351240" duration="2190000" />
+      <workItem from="1617874853108" duration="3614000" />
     </task>
     <servers />
   </component>
@@ -93,10 +99,11 @@
     </state>
     <state x="463" y="278" width="918" height="509" key="NewPhpClassDialog/0.0.1920.1040/-1280.0.1280.984@0.0.1920.1040" timestamp="1609279319036" />
     <state x="463" y="278" width="922" height="484" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610462176569" />
-    <state x="740" y="424" key="NewPhpFileDialog" timestamp="1610462532755">
+    <state x="740" y="424" key="NewPhpFileDialog" timestamp="1617876962658">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="424" key="NewPhpFileDialog/0.0.1920.1040/-1280.0.1280.984@0.0.1920.1040" timestamp="1609273805031" />
+    <state x="740" y="424" key="NewPhpFileDialog/0.0.1920.1040/-1360.165.1360.728@0.0.1920.1040" timestamp="1617876962658" />
     <state x="740" y="424" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610462532755" />
     <state x="382" y="78" key="SettingsEditor" timestamp="1609348366807">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -105,7 +112,6 @@
     <state x="532" y="237" key="run.anything.popup" timestamp="1610624816716">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="532" y="237" key="run.anything.popup/0.0.1920.1040/-1280.0.1280.984@0.0.1920.1040" timestamp="1609190321463" />
     <state x="532" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610624816716" />
     <state x="539" y="5" key="search.everywhere.popup" timestamp="1617192507842">
       <screen x="0" y="0" width="1920" height="1040" />

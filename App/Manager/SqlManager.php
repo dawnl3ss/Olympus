@@ -13,24 +13,11 @@ class SqlManager {
     public const NO_DATABASE = "";
     public const DATABASE_OLYMPUS = "olympus_db";
 
-    /** @var string $username */
-    private static $username = "root";
-
-    /** @var string $password */
-    private static $password = "";
-
     /**
-     * @return string
+     * @return stdClass
      */
-    protected static function getUsername() : string {
-        return self::$username;
-    }
-
-    /**
-     * @return string
-     */
-    protected static function getPassword() : string {
-        return self::$password;
+    protected static function serialize_sql_data() : stdClass {
+        return json_decode(file_get_contents(__DIR__ . '/../../settings/sql-ids.json'));
     }
 
     /**
@@ -39,44 +26,45 @@ class SqlManager {
      * @return PDO
      */
     public static function connectPDO($dbName = null) : PDO {
+        $data = self::serialize_sql_data();
+
         if (is_null($dbName)) {
-            return new PDO("mysql:host=localhost", self::getUsername(), self::getPassword());
-        } else {
-            return new PDO("mysql:host=localhost;dbname=$dbName", self::getUsername(), self::getPassword());
-        }
+            return new PDO("{$data->host}:host={$data->config_type}", $data->username, $data->password);
+        } else return new PDO("{$data->host}:host={$data->config_type};dbname=$dbName", $data->username, $data->password);
     }
 
     /**
-     * @param string $data
+     * @param string $statement
      *
      * @param string $db
      *
-     * @param bool $query
-     *
-     * @param null $bindValues
+     * @param array|null $bindValues
      */
-    public static function writeData(string $statement, string $db, $query = false, $bindValues = array()){
+    public static function writeData(string $statement, string $db, array $bindValues = null){
         $pdo = self::connectPDO($db);
 
-        if (!$query){
-            $pdo->exec($statement);
-        } else {
+        if (!is_null($bindValues)){
             $sql = $pdo->prepare($statement);
             $sql->execute($bindValues);
-        }
+        } else $pdo->exec($statement);
     }
 
     /**
-     * @param string $data
+     * @param string $statement
      *
      * @param string $db
+     *
+     * @param null|array $bindValues
      *
      * @return bool
      */
-    public static function dataExist(string $statement, string $db, $bindValues = null) : bool {
+    public static function dataExist(string $statement, string $db, array $bindValues = null) : bool {
         $pdo = self::connectPDO($db);
         $sql = $pdo->prepare($statement);
-        $sql->execute();
+
+        if (!is_null($bindValues)){
+            $sql->execute($bindValues);
+        } else $sql->execute();
         return $sql->rowCount() >= self::STATEMENT_DATA_FIND;
     }
 
