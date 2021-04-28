@@ -51,9 +51,6 @@ class ARS_SHELL_CRYPT implements StandartList {
                             if (isset(self::CHAR_LIST[$i - self::STANDART_SPACING])) {
                                 $n_char = self::CHAR_LIST[$i - self::STANDART_SPACING];
                                 break;
-                            } elseif (isset(self::CHAR_LIST[($i - self::STANDART_SPACING) + count(self::CHAR_LIST)])) {
-                                $n_char = self::CHAR_LIST[($i - self::STANDART_SPACING) + count(self::CHAR_LIST)];
-                                break;
                             }
                         } while (!$find);
                         break;
@@ -62,6 +59,9 @@ class ARS_SHELL_CRYPT implements StandartList {
                         do {
                             if (isset(self::CHAR_LIST[$i - self::STANDART_SPACING])) {
                                 $n_char = self::CHAR_LIST[$i - self::STANDART_SPACING];
+                                break;
+                            } elseif (isset(self::CHAR_LIST[($i - self::STANDART_SPACING) + count(self::CHAR_LIST)])) {
+                                $n_char = self::CHAR_LIST[($i - self::STANDART_SPACING) + count(self::CHAR_LIST)];
                                 break;
                             }
                         } while (!$find);
