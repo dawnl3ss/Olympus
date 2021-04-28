@@ -20,8 +20,8 @@
                     $u->update("pseudo", $post["username"])->send_instance_content("username", $post["username"]);
                 }
 
-                if ($post["password"] !== $u->getPassword()){
-                    $u->update("password", $post["password"])->send_instance_content("password", $post["password"]);
+                if ($post["password"] !== PassEncryption::decrypt_pass($u->getPassword())){
+                    $u->update("password", PassEncryption::encrypt_pass($post["password"]))->send_instance_content("password", PassEncryption::encrypt_pass($post["password"]));
                 }
 
                 if ($post["email"] !== $u->getMail()){
@@ -89,7 +89,7 @@
                 <div class="div-profile-password">
                     <label>
                         <h3> Password : </h3>
-                        <input type="text" value="<?php echo $u->getPassword(); ?>" name="password" autocomplete="off">
+                        <input type="text" value="<?php echo PassEncryption::decrypt_pass($u->getPassword()); ?>" name="password" autocomplete="off">
                     </label>
                 </div>
                 <div class="div-profile-id">

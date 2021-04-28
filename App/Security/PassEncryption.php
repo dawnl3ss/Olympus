@@ -15,7 +15,7 @@ class PassEncryption {
         for ($i = 0; $i < strlen($password); $i++){
             $encrypt .= (new ARS_SHELL_CRYPT())->char_to_achar($password[$i], ARS_SHELL_CRYPT::METHOD_CRYPT);
         }
-        return $encrypt . "/-(_25az" . strrev($encrypt) . "(é-$*=";
+        return $encrypt . "/-(_@25az" . strrev($encrypt) . "(_*%-$*=";
     }
 
     /**
@@ -24,7 +24,7 @@ class PassEncryption {
      * @return string
      */
     public static function decrypt_pass(string $hash){
-        $hash = explode("/-(_25az", $hash)[0];
+        $hash = explode("/-(_@25az", $hash)[0];
         $decrypt = "";
 
         for ($i = 0; $i < strlen($hash); $i++){

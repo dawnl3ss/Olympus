@@ -11,8 +11,8 @@
 
     if (isset($post["login-sub"])){
         if (!empty($post["email"]) and !empty($post["password"])){
-            if (SqlManager::dataExist("SELECT * FROM users WHERE email = ? AND password = ?", SqlManager::DATABASE_OLYMPUS, array($post["email"], $post["password"]))){
-                $data = SqlManager::getData("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . $post["password"] . "'", SqlManager::DATABASE_OLYMPUS);
+            if (SqlManager::dataExist("SELECT * FROM users WHERE email = ? AND password = ?", SqlManager::DATABASE_OLYMPUS, array($post["email"], PassEncryption::encrypt_pass($post["password"])))){
+                $data = SqlManager::getData("SELECT * FROM users WHERE email = '" . $post["email"] . "' AND password = '" . PassEncryption::encrypt_pass($post["password"]) . "'", SqlManager::DATABASE_OLYMPUS);
                 $session = new SessionManager([], (bool)((int)$data[0]["id"] === AdminTools::ADMIN_ACCOUNT_ID));
                 $u = new TempUser([
                     "username" => $data[0]["pseudo"],

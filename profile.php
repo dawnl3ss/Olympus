@@ -68,7 +68,7 @@
             </div>
             <div class="div-profile-password">
                 <h3> Password : </h3>
-                <h5> <?php echo $u->getPassword() ?> </h5>
+                <h5> <?php echo PassEncryption::decrypt_pass($u->getPassword()) ?> </h5>
             </div>
             <div class="div-profile-id">
                 <h3> User ID : </h3>
