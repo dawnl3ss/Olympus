@@ -5,7 +5,9 @@ function __load_all_classes(){
         if ($folders != "." and $folders != ".." and $folders != "Autoloader.php"){
             foreach (@scandir("App/{$folders}") as $file){
                 if ($file != "." and $file != "..") {
-                    __load_class("App/{$folders}/{$file}");
+                    if ($file != "ARS_SHELL_CRYPT"){
+                        __load_class("App/{$folders}/{$file}");
+                    } else __load_class("App/{$folders}/{$file}/ARS_SHELL_CRYPT.php");
                 }
             }
         }

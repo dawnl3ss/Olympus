@@ -1,37 +1,35 @@
 <?php
 
+require_once "App/Security/ARS_SHELL_CRYPT/ARS_SHELL_CRYPT.php";
+
 class PassEncryption {
 
     /**
-     * @param $plaintext
-     *
-     * @param $password
+     * @param string $password
      *
      * @return string
      */
-    public static function encrypt_pass($plaintext, $password) {
-        $method = "AES-256-CBC";
-        $key = hash('sha256', $password, true);
-        $iv = openssl_random_pseudo_bytes(16);
-        $ciphertext = openssl_encrypt($plaintext, $method, $key, OPENSSL_RAW_DATA, $iv);
-        $hash = hash_hmac('sha256', $ciphertext . $iv, $key, true);
-        return $iv . $hash . $ciphertext;
+    public static function encrypt_pass(string $password){
+        $encrypt = "";
+
+        for ($i = 0; $i < strlen($password); $i++){
+            $encrypt .= (new ARS_SHELL_CRYPT())->char_to_achar($password[$i], ARS_SHELL_CRYPT::METHOD_CRYPT);
+        }
+        return $encrypt . "/-(_25az" . strrev($encrypt) . "(é-$*=";
     }
 
     /**
-     * @param $ivHashCiphertext
+     * @param string $hash
      *
-     * @param $password
-     *
-     * @return false|string|null
+     * @return string
      */
-    public static function decrypt_pass($ivHashCiphertext, $password) {
-        $method = "AES-256-CBC";
-        $iv = substr($ivHashCiphertext, 0, 16);
-        $hash = substr($ivHashCiphertext, 16, 32);
-        $ciphertext = substr($ivHashCiphertext, 48);
-        $key = hash('sha256', $password, true);
-        if (!hash_equals(hash_hmac('sha256', $ciphertext . $iv, $key, true), $hash)) return null;
-        return openssl_decrypt($ciphertext, $method, $key, OPENSSL_RAW_DATA, $iv);
+    public static function decrypt_pass(string $hash){
+        $hash = explode("/-(_25az", $hash)[0];
+        $decrypt = "";
+
+        for ($i = 0; $i < strlen($hash); $i++){
+            $decrypt .= (new ARS_SHELL_CRYPT())->char_to_achar($hash[$i], ARS_SHELL_CRYPT::METHOD_DECRYPT);
+        }
+        return $decrypt;
     }
 }
