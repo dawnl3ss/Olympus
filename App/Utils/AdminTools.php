@@ -5,7 +5,7 @@ __load_all_classes();
 
 class AdminTools {
 
-    public const ADMIN_ACCOUNT_ID = 21;
+    public const ADMIN_ACCOUNT_ID = 1;
 
     /**
      * @param string $statement

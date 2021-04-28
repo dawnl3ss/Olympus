@@ -4,7 +4,9 @@
     __load_all_classes();
     session_start();
 
-    if ($_SESSION["temp_user"] instanceof TempUser) MessageHandler::__init_private_messages($user = $_SESSION["temp_user"]);
+    if ($_SESSION["temp_user"] instanceof TempUser) {
+        MessageHandler::__init_private_messages($user = $_SESSION["temp_user"]);
+    }
 
 ?>
 

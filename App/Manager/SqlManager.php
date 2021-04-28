@@ -13,6 +13,31 @@ class SqlManager {
     public const NO_DATABASE = "";
     public const DATABASE_OLYMPUS = "olympus_db";
 
+    public static function __init_all_tables(){
+        $pdo = self::connectPDO(self::DATABASE_OLYMPUS);
+
+        $pdo->prepare("CREATE TABLE IF NOT EXISTS `users`(
+            id INT UNSIGNED AUTO_INCREMENT KEY,
+            pseudo VARCHAR(255),
+            password VARCHAR(255),
+            email VARCHAR(255)
+        )")->execute();
+        $pdo->prepare("CREATE TABLE IF NOT EXISTS `messages`(
+            id INT UNSIGNED AUTO_INCREMENT KEY,
+            author VARCHAR(255),
+            content VARCHAR(255)
+        )")->execute();
+        $pdo->prepare("CREATE TABLE IF NOT EXISTS `private_messages`(
+            id INT UNSIGNED AUTO_INCREMENT KEY,
+            author VARCHAR(255),
+            recipient VARCHAR(255),
+            content VARCHAR(255)
+        )")->execute();
+        $pdo->prepare("CREATE TABLE IF NOT EXISTS `connected`(
+            name VARCHAR(255)
+        )")->execute();
+    }
+
     /**
      * @return stdClass
      */
