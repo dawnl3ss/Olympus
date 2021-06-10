@@ -137,7 +137,7 @@
                 SqlManager::writeData("INSERT INTO messages(
                         author, content
                     ) VALUES (
-                        '" . $u->getUsername() . "', '" . $_POST["chat-input"] . "'
+                        '" . $u->getUsername() . "', '" . htmlspecialchars($_POST["chat-input"]) . "'
                     )
                 ", SqlManager::DATABASE_OLYMPUS);
                 header("refresh: 0");

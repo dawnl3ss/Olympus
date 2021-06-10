@@ -23,12 +23,14 @@ body {
     left: 35%;
     top: 80%;
     transition: 0.25s;
+    outline: none;
 }
 
 .admin-form button[name = "submit-button"]:hover {
     background-color: white;
     color: black;
     transition: 0.25s;
+    outline: none;
 }
 
 .div-sql {
@@ -51,6 +53,7 @@ body {
 .div-sql input[name = "sql-input"]:focus {
     transition: 0.25s;
     width: 400px;
+    outline: none;
 }
 
 .sql-title {
@@ -79,6 +82,7 @@ body {
 .shell-div input[name = "shell-input"]:focus {
     transition: 0.25s;
     width: 400px;
+    outline: none;
 }
 
 .shell-title {

@@ -7,7 +7,7 @@ function __load_all_classes(){
                 if ($file != "." and $file != "..") {
                     if ($file != "ARS_SHELL_CRYPT"){
                         __load_class("App/{$folders}/{$file}");
-                    } else __load_class("App/{$folders}/{$file}/ARS_SHELL_CRYPT.php");
+                    }
                 }
             }
         }

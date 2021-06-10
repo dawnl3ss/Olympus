@@ -22,6 +22,13 @@ class SqlManager {
             password VARCHAR(255),
             email VARCHAR(255)
         )")->execute();
+        $pdo->prepare("INSERT INTO
+            `users`(
+                pseudo, password, email
+            ) VALUES (
+                'root', 'root', 'root@admin.ol'
+            )
+        ")->execute();
         $pdo->prepare("CREATE TABLE IF NOT EXISTS `messages`(
             id INT UNSIGNED AUTO_INCREMENT KEY,
             author VARCHAR(255),

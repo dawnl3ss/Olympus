@@ -48,6 +48,11 @@
                         <a href="profile.php"><button name="nav-profile-button"> Profile </button></a>
                     </label>
                 <?php endif; ?>
+                <?php if (SessionManager::is_registered($_SESSION)) : ?>
+                    <label>
+                        <a href="dm.php" onclick=""><img src="images/dm-letter.png" name="dm"></a>
+                    </label>
+                <?php endif; ?>
                 <span>
                     <img src="images/olympus-logo.png" name="logo">
                 </span>

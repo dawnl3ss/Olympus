@@ -1,8 +1,6 @@
 <?php
 
-interface StandartList {
-
-    public const STANDART_SPACING = 10;
+interface StandardList {
 
     /** @var array $alpha_char */
     public const CHAR_LIST = [
@@ -10,6 +8,6 @@ interface StandartList {
         "K", "l", "L", "m", "M", "n", "N", "o", "O", "p", "P", "q", "Q", "r", "R", "s", "S", "t", "T", "u", "U",
         "v", "V", "w", "W", "x", "X", "y", "Y", "z", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "$",
         "%", "*", "(", ")", "{", "}", "<", ">", "=", "/", "|", "!", "?", ",", "^", "-", "+", "&", "²", "~", ":",
-        "#", "°", "¨", "§", ".", ";", "`", "[", "]", '"'
+        "#", "°", "¨", "§", ".", ";", "`", "[", "]", '"', " "
     ];
 }

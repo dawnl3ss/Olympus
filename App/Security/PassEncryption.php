@@ -1,6 +1,6 @@
 <?php
 
-require_once "App/Security/ARS_SHELL_CRYPT/ARS_SHELL_CRYPT.php";
+require_once "App/Security/ARS_SHELL_CRYPT/cryptage/Encryption.php";
 
 class PassEncryption {
 
@@ -10,12 +10,7 @@ class PassEncryption {
      * @return string
      */
     public static function encrypt_pass(string $password){
-        $encrypt = "";
-
-        for ($i = 0; $i < strlen($password); $i++){
-            $encrypt .= (new ARS_SHELL_CRYPT())->char_to_achar($password[$i], ARS_SHELL_CRYPT::METHOD_CRYPT);
-        }
-        return $encrypt . "/-(_@25az" . strrev($encrypt) . "(_*%-$*=";
+        return (new Encryption($password, Encryption::STANDARD_SPACING_SEC_1))->str_encrypt();
     }
 
     /**
@@ -24,12 +19,9 @@ class PassEncryption {
      * @return string
      */
     public static function decrypt_pass(string $hash){
-        $hash = explode("/-(_@25az", $hash)[0];
-        $decrypt = "";
-
-        for ($i = 0; $i < strlen($hash); $i++){
-            $decrypt .= (new ARS_SHELL_CRYPT())->char_to_achar($hash[$i], ARS_SHELL_CRYPT::METHOD_DECRYPT);
-        }
-        return $decrypt;
+        return (new Encryption("", Encryption::STANDARD_SPACING_SEC_1, [
+            "encrypted" => $hash,
+            "decrypted" => ""
+        ]))->str_decrypt();
     }
 }
