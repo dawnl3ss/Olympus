@@ -1,9 +1,9 @@
 <?php
 
-require_once "App/Autoloader.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/Autoloader.php";
 __load_all_classes();
 
-class TempUser {
+class User {
 
     /** @var array $data **/
     private $data;
@@ -13,50 +13,59 @@ class TempUser {
 
     /** @var PrivateMessage[] $conversations */
     public $conversations = [];
-    
+
     public function __construct(array $data){
         $this->data = $data;
     }
-    
+
+    /**
+     * @param $session
+     *
+     * @return bool
+     */
+    public static function is_login($session) : bool {
+        return isset($session["user"]);
+    }
+
     /**
      * @return string
      */
-    public function getUsername() : string {
+    public function get_username() : string {
         return $this->data["username"];
     }
-    
+
     /**
      * @return string
      */
-    public function getPassword() : string {
+    public function get_password() : string {
         return $this->data["password"];
     }
-    
+
     /**
      * @return int
      */
-    public function getId() : int {
+    public function get_id() : int {
         return $this->data["id"];
     }
 
     /**
      * @return string
      */
-    public function getMail() : string {
+    public function get_mail() : string {
         return $this->data["email"];
     }
 
     /**
      * @return bool
      */
-    public function isAdmin() : bool {
+    public function is_admin() : bool {
         return $this->data["admin"];
     }
 
     /**
      * @return PrivateMessage[]
      */
-    public function getConversations() : array {
+    public function get_conversations() : array {
         return $this->conversations;
     }
 
@@ -68,16 +77,16 @@ class TempUser {
      * @return $this
      */
     public function update(string $index, $value) : self {
-        SqlManager::writeData("UPDATE `users`
+        SQLManager::write_data("UPDATE `users`
             SET $index = '$value'
-            WHERE id = '{$this->getId()}'
-        ", SqlManager::DATABASE_OLYMPUS);
+            WHERE id = '{$this->get_id()}'
+        ", SQLManager::DATABASE_OLYMPUS);
 
         if ($index === "pseudo"){
-            SqlManager::writeData("UPDATE `connected`
+            SQLManager::write_data("UPDATE `connected`
                 SET name = '$value'
-                WHERE name = '{$this->getUsername()}'
-            ", SqlManager::DATABASE_OLYMPUS);
+                WHERE name = '{$this->get_username()}'
+            ", SQLManager::DATABASE_OLYMPUS);
         }
         return $this;
     }
@@ -93,21 +102,22 @@ class TempUser {
 
     public function connect(){
         $this->connected_state = true;
-        if (!SqlManager::dataExist("SELECT * FROM `connected` WHERE name = '{$this->getUsername()}'", SqlManager::DATABASE_OLYMPUS)){
-            if (!$this->isAdmin()){
-                SqlManager::writeData("INSERT INTO connected(
+        if (!SQLManager::data_exist("SELECT * FROM `connected` WHERE name = '{$this->get_username()}'", SQLManager::DATABASE_OLYMPUS)){
+            if (!$this->is_admin()){
+                SQLManager::write_data("INSERT INTO connected(
                     name
                 ) VALUES (
-                    '" . $this->getUsername() . "'
-                )", SqlManager::DATABASE_OLYMPUS);
+                    '" . $this->get_username() . "'
+                )", SQLManager::DATABASE_OLYMPUS);
             }
         }
     }
 
     public function disconnect(){
         $this->connected_state = false;
-        SqlManager::writeData("DELETE FROM `connected` WHERE
-            `name` = '" . $this->getUsername() . "'",
-        SqlManager::DATABASE_OLYMPUS);
+        SQLManager::write_data("DELETE FROM `connected` WHERE
+            `name` = '" . $this->get_username() . "'",
+            SQLManager::DATABASE_OLYMPUS
+        );
     }
 }

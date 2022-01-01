@@ -1,17 +1,18 @@
 <?php
 
+$file_lists = [
+    $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/manager/SQLManager.php",
+    $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/security/BcryptHash.php",
+    $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/struct/message/BanWord.php",
+    $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/struct/message/MessageHandler.php",
+    $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/struct/message/Message.php",
+    $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/struct/message/PrivateMessage.php",
+    $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/struct/user/User.php",
+];
+
 function __load_all_classes(){
-    foreach (@scandir("App") as $folders){
-        if ($folders != "." and $folders != ".." and $folders != "Autoloader.php"){
-            foreach (@scandir("App/{$folders}") as $file){
-                if ($file != "." and $file != "..") {
-                    if ($file != "ARS_SHELL_CRYPT"){
-                        __load_class("App/{$folders}/{$file}");
-                    }
-                }
-            }
-        }
-    }
+    global $file_lists;
+    foreach ($file_lists as $path) __load_class($path);
 }
 
 /**

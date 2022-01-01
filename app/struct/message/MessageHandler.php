@@ -1,6 +1,6 @@
 <?php
 
-require_once "App\Autoloader.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/Autoloader.php";
 __load_all_classes();
 
 class MessageHandler {
@@ -26,8 +26,8 @@ class MessageHandler {
     public static function __init_messages(){
         self::$messages = [];
 
-        foreach (SqlManager::getData("SELECT * FROM `messages` ORDER BY `id`", SqlManager::DATABASE_OLYMPUS) as $key => $data){
-            array_push(self::$messages, new Message($data["content"], $data["author"], $data["id"]));
+        foreach (SQLManager::get_data("SELECT * FROM `messages` ORDER BY `id`", SQLManager::DATABASE_OLYMPUS) as $key => $data){
+            array_push(self::$messages, new Message($data["content"], $data["author"], (int)$data["id"]));
         }
     }
 
@@ -37,7 +37,7 @@ class MessageHandler {
     public static function __init_private_messages(TempUser $asker){
         $asker->conversations = [];
 
-        foreach (SqlManager::getData("SELECT * FROM `private_messages` WHERE author = '{$asker->getUsername()}' OR recipient = '{$asker->getUsername()}' ORDER BY `id` DESC", SqlManager::DATABASE_OLYMPUS) as $key => $data){
+        foreach (SQLManager::get_data("SELECT * FROM `private_messages` WHERE author = '{$asker->getUsername()}' OR recipient = '{$asker->getUsername()}' ORDER BY `id` DESC", SQLManager::DATABASE_OLYMPUS) as $key => $data){
             array_push($asker->conversations, new PrivateMessage($data["content"], $data["author"], $data["id"], $data["recipient"]));
         }
     }
@@ -54,7 +54,7 @@ class MessageHandler {
      */
     public function delete_message() : self {
         if (in_array($this, self::$messages, true)){
-            SqlManager::writeData("DELETE FROM `messages` WHERE id = '{$this->id}'", SqlManager::DATABASE_OLYMPUS);
+            SQLManager::write_data("DELETE FROM `messages` WHERE id = '{$this->id}'", SQLManager::DATABASE_OLYMPUS);
         }
         return $this;
     }
@@ -65,10 +65,10 @@ class MessageHandler {
      * @return $this
      */
     public function edit_message(string $new) : self {
-        SqlManager::writeData("UPDATE `messages`
+        SQLManager::write_data("UPDATE `messages`
             SET content = '{$new}' 
             WHERE id = '{$this->id}'
-        ", SqlManager::DATABASE_OLYMPUS);
+        ", SQLManager::DATABASE_OLYMPUS);
         return $this;
     }
 }

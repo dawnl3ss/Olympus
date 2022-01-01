@@ -1,6 +1,6 @@
 <?php
 
-require_once "App/Autoloader.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/Autoloader.php";
 __load_all_classes();
 
 class PrivateMessage extends Message {
@@ -16,7 +16,7 @@ class PrivateMessage extends Message {
     /**
      * @return string
      */
-    public function getRecipient() : string {
+    public function get_recipient() : string {
         return $this->recipient;
     }
 
@@ -31,7 +31,7 @@ class PrivateMessage extends Message {
      * @return MessageHandler
      */
     public function delete_message() : MessageHandler {
-        SqlManager::writeData("DELETE FROM `private_messages` WHERE id = '{$this->id}'", SqlManager::DATABASE_OLYMPUS);
+        SQLManager::write_data("DELETE FROM `private_messages` WHERE id = '{$this->id}'", SQLManager::DATABASE_OLYMPUS);
         return $this;
     }
 
@@ -41,10 +41,10 @@ class PrivateMessage extends Message {
      * @return MessageHandler
      */
     public function edit_message(string $new) : MessageHandler {
-        SqlManager::writeData("UPDATE `private_messages`
+        SQLManager::write_data("UPDATE `private_messages`
             SET content = '{$new}'
             WHERE id = '{$this->id}'
-        ", SqlManager::DATABASE_OLYMPUS);
+        ", SQLManager::DATABASE_OLYMPUS);
         return $this;
     }
 }
