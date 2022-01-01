@@ -1,28 +1,17 @@
 <?php
-    require_once "App/Autoloader.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/Olympus-rewrite/app/Autoloader.php";
     __load_all_classes();
     session_start();
     Message::__init_messages();
 
-    if (isset($_POST["nav-logout-button"]) and SessionManager::is_registered($_SESSION)){
-        unset($_SESSION["data"]);
-
-        if ($_SESSION["temp_user"] instanceof TempUser){
-            $_SESSION["temp_user"]->disconnect();
-            unset($_SESSION["temp_user"]);
-        }
-        header("Location: login.php");
-    }
-
-    if (!SessionManager::is_registered($_SESSION)){
-        header("Location: login.php");
-    }
+    if (!User::is_login($_SESSION))
+        header("Location: page/auth/login.php");
 ?>
 
 <html lang="fr">
     <head>
         <title> Olympus </title>
-        <link rel="icon" href="images/fav-icon.png">
+        <link rel="icon" href="image/fav-icon.png">
 
         <!-- Head Meta -->
         <meta charset="UTF-8">
@@ -31,60 +20,44 @@
         <meta name="keywords" content="Olympus, Olympe, Blog, Chat-Box, Neptune, NeptuneDev">
 
         <!-- CSS Style -->
-        <link href="templates/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="templates/css/nav-bar.css">
-        <link rel="stylesheet" href="templates/css/index-style.css">
-
-        <script language="JavaScript">
-            window.addEventListener("onclose", function(){
-                <?php
-                    if ($_SESSION["temp_user"] instanceof TempUser){
-                        $u = $_SESSION["temp_user"];
-
-                        if (SqlManager::dataExist("SELECT * FROM `connected` WHERE name = '" . $u->getUsername() . "'", SqlManager::DATABASE_OLYMPUS)){
-                            if (!SessionManager::is_registered($_SESSION)){
-                                $u->disconnect();
-                            }
-                        }
-                    }
-                ?>
-            })
-        </script>
+        <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="style/nav-bar.css">
+        <link rel="stylesheet" href="style/index-style.css">
     </head>
 
     <body>
         <nav class="nav-bar">
             <div>
                 <label>
-                    <a href="/Olympus"><button name="nav-home-button"> Acceuil </button></a>
+                    <a href=""><button name="nav-home-button"> Acceuil </button></a>
                 </label>
-                <?php if (!SessionManager::is_registered($_SESSION)) : ?>
+                <?php if (!User::is_login($_SESSION)) : ?>
                     <label>
-                        <a href="login.php"><button name="nav-login-button"> Login </button></a>
+                        <a href="page/auth/login.php"><button name="nav-login-button"> Login </button></a>
                     </label>
                 <?php endif; ?>
-                <?php if (!SessionManager::is_registered($_SESSION)) : ?>
+                <?php if (!User::is_login($_SESSION)) : ?>
                     <label>
-                        <a href="register.php"><button name="nav-register-button"> Register </button></a>
+                        <a href="page/register.php"><button name="nav-register-button"> Register </button></a>
                     </label>
                 <?php endif; ?>
-                <?php if (SessionManager::is_registered($_SESSION)) : ?>
-                    <form action="../Olympus/" method="post">
-                        <input type="submit" name="nav-logout-button" value="Logout">
-                    </form>
-                <?php endif; ?>
-                <?php if (SessionManager::is_registered($_SESSION)) : ?>
+                <?php if (User::is_login($_SESSION)) : ?>
                     <label>
-                        <a href="profile.php"><button name="nav-profile-button"> Profile </button></a>
+                        <a href="page/auth/logout.php"><button name="nav-register-button"> Logout </button></a>
                     </label>
                 <?php endif; ?>
-                <?php if (SessionManager::is_registered($_SESSION)) : ?>
+                <?php if (User::is_login($_SESSION)) : ?>
                     <label>
-                        <a href="dm.php"><img src="images/dm-letter.png" name="dm"></a>
+                        <a href="page/profile.php"><button name="nav-profile-button"> Profile </button></a>
+                    </label>
+                <?php endif; ?>
+                <?php if (User::is_login($_SESSION)) : ?>
+                    <label>
+                        <a href="page/dm.php"><img src="image/dm-letter.png" name="dm"></a>
                     </label>
                 <?php endif; ?>
                 <span>
-                    <img src="images/olympus-logo.png" name="logo">
+                    <img src="image/olympus-logo.png" name="logo">
                 </span>
                 <br><br><br><br><br><hr>
             </div>
@@ -96,8 +69,8 @@
             </div>
             <?php
                 $t_pos = 25;
-
-                foreach (SqlManager::getData("SELECT * FROM connected", SqlManager::DATABASE_OLYMPUS) as $key => $value){
+    
+                foreach (SQLManager::get_data("SELECT * FROM connected", SQLManager::DATABASE_OLYMPUS) as $key => $value){
                     echo "<p style='color: white; white-space: pre; position: absolute; left: 93%; top: $t_pos%;'> {$value['name']} </p>";
                     $t_pos += 4;
                 }
@@ -109,7 +82,7 @@
             <?php
                 foreach (MessageHandler::$messages as $message){
                     if ($message instanceof Message){
-                        if (ForbiddenMessage::contain_forbidden_word($message->getMessage())){
+                        if (contain_forbidden_word($message->get_message())){
                             $message->delete_message();
                             continue;
                         }
@@ -123,27 +96,23 @@
         <div class="chat-back"></div>
         <form class="chat-form" action="" method="post" name="chat-form">
             <input type="text" name="chat-input" placeholder="Ecrivez ici..." autocomplete="off">
-            <button type="submit"><img src="images/send-message.png" name="paper-plane"></button>
+            <button type="submit"><img src="image/send-message.png" name="paper-plane"></button>
         </form>
     </body>
 </html>
 
 <?php
-    if ($_SESSION["temp_user"] instanceof TempUser){
-        $u = $_SESSION["temp_user"];
+    if ($_SESSION["user"] instanceof User){
+        $user = $_SESSION["user"];
 
         if (!empty($_POST["chat-input"])){
-            try {
-                SqlManager::writeData("INSERT INTO messages(
-                        author, content
-                    ) VALUES (
-                        '" . $u->getUsername() . "', '" . htmlspecialchars($_POST["chat-input"]) . "'
-                    )
-                ", SqlManager::DATABASE_OLYMPUS);
-                header("refresh: 0");
-            } catch (PDOException $e){
-                echo $e->getMessage();
-            }
+            SQLManager::write_data("INSERT INTO messages(
+                    author, content
+                ) VALUES (
+                    '" . $user->get_username() . "', '" . htmlspecialchars($_POST["chat-input"]) . "'
+                )
+            ", SQLManager::DATABASE_OLYMPUS);
+            header("refresh: 0");
         }
     }
 ?>

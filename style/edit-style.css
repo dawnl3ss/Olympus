@@ -1,0 +1,178 @@
+body {
+    background-image: linear-gradient(#414141, rgba(0, 0, 0, 0.85));
+}
+
+.div-profile-edit {
+    height: 550px;
+    width: 1200px;
+    background: rgba(25, 25, 25, 0.71);
+    border-radius: 70px;
+    padding: 40px;
+    position: absolute;
+    top: 25%;
+    left: 19.1%;
+}
+
+.div-profile-username {
+    text-align: center;
+    background: rgba(17, 17, 17, 0.71);
+    width: 250px;
+    height: 80px;
+    border-radius: 24px;
+    color: white;
+    transition: 0.25s;
+}
+
+.div-profile-username h5 {
+    text-align: center;
+    color: blanchedalmond;
+}
+
+.div-profile-username input {
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    border: 1px solid white;
+    background: none;
+    transition: 0.25s;
+    width: 180px;
+}
+
+.div-profile-username input:hover {
+    transition: 0.25s;
+    border: 1px solid blanchedalmond;
+    width: 225px;
+}
+
+.div-profile-password {
+    text-align: center;
+    background: rgba(17, 17, 17, 0.71);
+    width: 250px;
+    height: 80px;
+    border-radius: 24px;
+    color: white;
+    position: absolute;
+    left: 36.4%;
+    top: 7.4%;
+}
+
+.div-profile-password h5 {
+    text-align: center;
+    color: blanchedalmond;
+}
+
+.div-profile-password input {
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    border: 1px solid white;
+    background: none;
+    transition: 0.25s;
+    width: 180px;
+}
+
+.div-profile-password input:hover {
+    transition: 0.25s;
+    border: 1px solid blanchedalmond;
+    width: 225px;
+}
+
+.div-profile-id {
+    text-align: center;
+    background: rgba(17, 17, 17, 0.71);
+    width: 250px;
+    height: 80px;
+    border-radius: 24px;
+    color: white;
+    position: absolute;
+    left: 70%;
+    top: 8%;
+}
+
+.div-profile-id h5 {
+    text-align: center;
+    color: blanchedalmond;
+}
+
+.div-profile-id input {
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    border: 1px solid white;
+    background: none;
+    transition: 0.25s;
+    width: 180px;
+}
+
+.div-profile-id input:hover {
+    transition: 0.25s;
+    border: 1px solid blanchedalmond;
+    width: 225px;
+}
+
+.div-profile-email {
+    text-align: center;
+    background: rgba(17, 17, 17, 0.71);
+    width: 350px;
+    height: 80px;
+    border-radius: 24px;
+    color: white;
+    position: absolute;
+    top: 35%;
+    left: 32.5%;
+}
+
+.div-profile-email h5 {
+    text-align: center;
+    color: blanchedalmond;
+}
+
+.div-profile-email input {
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    border: 1px solid white;
+    background: none;
+    transition: 0.25s;
+    width: 280px;
+}
+
+.div-profile-email input:hover {
+    transition: 0.25s;
+    border: 1px solid blanchedalmond;
+    width: 320px;
+}
+
+.edit-submit {
+    color: white;
+    background: none;
+    border: 1px solid white;
+    border-radius: 24px;
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    left: 37.7%;
+    top: 75%;
+    transition: 0.25s;
+}
+
+.edit-submit:hover {
+    color: black;
+    background: white;
+    transition: 0.25s;
+}
+
+.back-arrow-image {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: -10%;
+    top: -1%;
+    transition: 0.25s;
+}
+
+.back-arrow-image:hover {
+    width: 60px;
+    height: 60px;
+    transition: 0.25s;
+}
